@@ -1,0 +1,109 @@
+:root {
+  --size-default-gap: 0.5rem;
+  --size-word-container: 4rem;
+  --color-background: #6e5c62;
+  --color-word: #615458;
+  --color-word-highlight: #4c4347;
+  --color-wrong-place: #d3ad69;
+  --color-right-place: #3aa394;
+  --color-wrong: #312a2c;
+  --color-font: #fafaff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+html,
+body {
+  height: 100%;
+  color: var(--color-font);
+  background-color: var(--color-background);
+}
+
+#game {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-default-gap);
+}
+
+.word {
+  display: flex;
+  gap: var(--size-default-gap);
+}
+
+.word--uncompleted {
+  animation: uncompletedAnim 0.3s ease-in-out forwards;
+}
+
+.word__letter {
+  display: grid;
+  place-items: center;
+  height: var(--size-word-container);
+  aspect-ratio: 1/1;
+  background-color: var(--color-word);
+  border-radius: 8px;
+  padding-bottom: 4px;
+  font: 700 2rem/1 sans-serif;
+}
+
+.word--selected .word__letter {
+  background-color: transparent;
+  border: 4px solid var(--color-word-highlight);
+}
+
+.word--selected .word__letter--selected {
+  padding-bottom: 0;
+  border-bottom-width: 8px;
+}
+.word__letter--right {
+  background-color: var(--color-right-place);
+}
+.word__letter--wrong-place {
+  background-color: var(--color-wrong-place);
+}
+.word__letter--wrong {
+  background-color: var(--color-wrong);
+}
+
+@keyframes uncompletedAnim {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+
+  75% {
+    transform: translateX(-8px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
